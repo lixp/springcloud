@@ -31,6 +31,12 @@ public class ServiceLucyApplication {
         return "hello " + name + " port:" + port;
     }
 
+    @RequestMapping("/hello")
+    @HystrixCommand(fallbackMethod = "hiError")
+    public String hello(@RequestParam String name) {
+        return "hello " + name + " port:" + port;
+    }
+
     public String hiError(String name) {
         return "hi," + name + "i'm error";
     }

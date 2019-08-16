@@ -34,6 +34,12 @@ public class ServiceJimApplication {
         return "hi," + name + "i'm error";
     }
 
+    @RequestMapping("/hello")
+    @HystrixCommand(fallbackMethod = "hiError")
+    public String hello(@RequestParam String name) {
+        return "hello " + name + " port:" + port;
+    }
+
     public static void main(String[] args) {
         SpringApplication.run(ServiceJimApplication.class, args);
     }
